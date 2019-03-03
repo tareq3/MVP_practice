@@ -1,36 +1,45 @@
 /*
+ * Created by Tareq Islam on 3/3/19 9:18 PM
+ *
+ *  Last modified 3/3/19 9:17 PM
+ */
+
+/*
  * Created by Tareq Islam on 6/8/18 1:38 AM
  *
  *  Last modified 6/8/18 1:38 AM
  */
 
-package com.mti.mvp_practice.mvp;
+package com.mti.mvp_practice.view.person;
 
 
+
+import com.mti.mvp_practice.domain.model.PersonModel;
 
 import javax.inject.Inject;
 
 /***
  * Created by Tareq on 08,June,2018.
  */
-public class Person_presenter_Manager implements Person_mvp_Central.Person_Presentor{
+public class
+PersonPresenterImpl implements IPersonPresenter {
 
-    person_Model mPerson_model;
+    PersonModel mPerson_model;
 
-    Person_mvp_Central.Person_View mPerson_view;
+    PersonView mPerson_view;
 
 
-   /* public Person_presenter_Manager(Person_mvp_Central.Person_View person_view) { //as View gonna have  connection with activity
+   /* public PersonPresenterImpl(Person_mvp_Central.Person_View person_view) { //as View gonna have  connection with activity
         *//*
               * As our policy is activity will never know about model
          *//*
-           mPerson_model = new person_Model(); //we are making an object as model only cooperate with presenter
+           mPerson_model = new PersonModel(); //we are making an object as model only cooperate with presenter
         mPerson_view = person_view;
     }
 */
 
     @Inject
-    public Person_presenter_Manager(person_Model person_model, Person_mvp_Central.Person_View person_view) {
+    public PersonPresenterImpl(PersonModel person_model, PersonView person_view) {
         mPerson_model = person_model;
         mPerson_view = person_view;
     }

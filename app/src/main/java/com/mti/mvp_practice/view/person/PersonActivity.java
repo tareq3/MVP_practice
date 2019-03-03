@@ -1,10 +1,22 @@
 /*
+ * Created by Tareq Islam on 3/3/19 9:18 PM
+ *
+ *  Last modified 3/3/19 9:17 PM
+ */
+
+/*
+ * Created by Tareq Islam on 3/3/19 8:46 PM
+ *
+ *  Last modified 3/3/19 8:37 PM
+ */
+
+/*
  * Created by Tareq Islam on 6/8/18 1:27 AM
  *
  *  Last modified 6/8/18 1:13 AM
  */
 
-package com.mti.mvp_practice;
+package com.mti.mvp_practice.view.person;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,17 +25,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mti.mvp_practice.mvp.Person_mvp_Central;
-import com.mti.mvp_practice.mvp.Person_presenter_Manager;
+import com.mti.mvp_practice.R;
 
 import javax.inject.Inject;
 import com.mti.mvp_practice.di.*;
-import com.mti.mvp_practice.mvp.person_Model;
+import com.mti.mvp_practice.di.component.DaggerPersonComponent;
+import com.mti.mvp_practice.di.module.PersonModule;
+import com.mti.mvp_practice.domain.model.PersonModel;
 
-public class MainActivity extends AppCompatActivity implements Person_mvp_Central.Person_View,View.OnClickListener {
+public class PersonActivity extends AppCompatActivity implements PersonView,View.OnClickListener {
 
     @Inject
-    Person_presenter_Manager mPerson_presentor; //we can't call the interface
+    PersonPresenterImpl mPerson_presentor; //we can't call the interface
 
     EditText firstName, lastName;
 
@@ -35,15 +48,18 @@ public class MainActivity extends AppCompatActivity implements Person_mvp_Centra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initViews();
 
-       /* mPerson_presentor=new Person_presenter_Manager(this);*/
+        //without dipendency injection
+        /*mPerson_presentor=new PersonPresenterImpl(new PersonModel(), this);*/
 
-       Daggerperson_Component.builder().
-               person_presenter_Module(
-                       new Person_presenter_Module(this,
-                               new person_Model())
+
+        //Here DaggerPersonComponet is the dagger compile reference of PersonComponent
+        //personModule is the dagger compile reference of PersonModule
+        DaggerPersonComponent.builder().
+               personModule(
+                       new PersonModule(this,
+                               new PersonModel())
                ).
                build().
                inject(this);

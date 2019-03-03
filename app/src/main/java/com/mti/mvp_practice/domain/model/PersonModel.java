@@ -1,23 +1,29 @@
 /*
+ * Created by Tareq Islam on 3/3/19 9:12 PM
+ *
+ *  Last modified 3/3/19 8:47 PM
+ */
+
+/*
  * Created by Tareq Islam on 6/8/18 1:19 AM
  *
  *  Last modified 6/8/18 1:19 AM
  */
 
-package com.mti.mvp_practice.mvp;
+package com.mti.mvp_practice.domain.model;
 
 /***
  * Created by Tareq on 08,June,2018.
  */
-public class person_Model {
+public class PersonModel {
 
    private String firstName;
    private String LastName;
 
-    public person_Model() {
+    public PersonModel() {
     }
 
-    public person_Model(String firstName, String lastName) {
+    public PersonModel(String firstName, String lastName) {
         this.firstName = firstName;
         LastName = lastName;
     }
